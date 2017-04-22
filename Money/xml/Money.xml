@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+  <font name="mybuttonfont">
+    <fgffile name="graphics/fonts/regular-10.fgf" />
+    <color value="#FFFFFF" />
+    <shadow offset="1,1" color="#000000" />
+  </font>
+
+  <template name="mybutton">
+    <buttoncontrol name="button">
+      <frame name="buttonup2" hidereadonly = "true" />
+      <stateframe>
+        <hover name="buttonup" hidereadonly = "true" />
+      </stateframe>
+      <font>mybuttonfont</font>
+    </buttoncontrol>
+  </template>
+
+  <windowclass name="charsheet_money_convert">
+		<margins control="0,0,0,0" />
+    <sheetdata>
+      <label_charframetop name="money_managment_label">
+        <anchored height="20">
+          <top offset="0"/>
+          <left offset="15" />
+          <right offset="-10" />
+        </anchored>
+        <icons>char_inventory</icons>
+        <static textres="char_label_manage_money" />
+        <invisible />
+      </label_charframetop>
+      
+      <mybutton name="configure_conversions">
+        <anchored to="money_managment_label" width="175" height="20">
+          <top anchor="bottom" relation="relative" offset="0" />
+          <left offset="5" />
+        </anchored>
+        <text>Configure Money Conversions</text>
+        <script>
+          function onButtonPress()
+            Interface.openWindow("configure_money_convert", DB.getRoot())
+          end
+          function onInit()
+            if not User.isHost() then
+              setVisible(false)
+            end
+          end
+        </script>
+      </mybutton>
+
+
+      <!--<stringu name="money_convert_sep">
+        <anchored to="submit" height="20">
+          <top anchor="bottom" relation="relative" />
+          <left offset="-20"/>
+        </anchored>
+        <text>Convert Money</text>
+        <center />
+        <readonly />
+        <script>
+          function onInit()
+            setAnchor("right", "money_managment_label", "right", "absolute", 20)
+          end
+        </script>
+      </stringu>-->
+      <label name="money_convert_amt_label">
+        <anchored to="configure_conversions" >
+          <top anchor="bottom" relation="relative" offset="5" />
+          <left  />
+        </anchored>
+        <static></static>
+      </label>
+      <basicnumber name="money_convert_amt">
+        <anchored to="money_convert_amt_label" width="50">
+          <top ancor="top" position="relative"/>
+          <left anchor="right" offset="5" />
+        </anchored>
+      </basicnumber>
+      <label name="money_convert_from_label">
+        <anchored to="money_convert_amt" >
+          <top anchor="top" relation="relative" />
+          <left anchor="right" offset="10" />
+        </anchored>
+        <static>From</static>
+      </label>
+      <stringu name="money_convert_from" source="coins.manage.convert.from">
+        <anchored to="money_convert_from_label" position="righthigh" offset="10,0" width="30" height="20" />
+      </stringu>
+      <label name="money_convert_to_label">
+        <anchored to="money_convert_from" >
+          <top anchor="top" relation="relative" />
+          <left anchor="right" offset="5" />
+        </anchored>
+        <static>To</static>
+      </label>
+      <stringu name="money_convert_to" source="coins.manage.convert.to">
+        <anchored to="money_convert_to_label" position="righthigh" offset="10,0" width="30" height="20" />
+      </stringu>
+      <mybutton name="convert">
+        <anchored to="money_convert_to" width="60" >
+          <top anchor="top" relation="relative" offset="0" />
+          <left anchor="right" />
+          <bottom />
+        </anchored>
+        <text>Convert</text>
+        <script file="scripts/convert.lua" />
+      </mybutton>
+      <mybutton name="convert_to_gp">
+        <anchored to="money_convert_amt_label" width="100" height="30">
+          <top anchor="bottom" relation="relative" offset="0" />
+          <left />
+        </anchored>
+        <text>Convert All to GP</text>
+        <script file="scripts/convert_all.lua" />
+      </mybutton>
+      
+      <basicnumber name="money_transfer_amt">
+        <anchored to="convert_to_gp" width="50">
+          <top anchor="bottom" position="relative" offset="5"/>
+          <left offset="5" />
+        </anchored>
+      </basicnumber>
+      <stringu name="money_transfer_to" source="coins.manage.transfer.to">
+        <anchored to="money_transfer_amt" position="righthigh" offset="10,0" width="30" height="20" />
+      </stringu>
+      <stringu name="select_label">
+        <script file="scripts/index.lua" />
+        <frame name="groupbox" offset="7,7,45,7" />
+        <anchored to="money_transfer_to">
+          <top anchor="top" relation="relative"  height="10"/>
+          <left anchor="right" offset="10" />
+        </anchored>
+        <readonly />
+      </stringu>
+      <stringu name="select_node">
+        <anchored to="money_transfer_to">
+          <top anchor="top" relation="relative"  height="10"/>
+          <left anchor="right" offset="10" />
+        </anchored>
+        <readonly />
+        <invisible />
+      </stringu>
+      <windowlist name="select_user">
+        <anchored to="money_transfer_to">
+          <top anchor="top" relation="relative"  height="10"/>
+          <left anchor="right" offset="10" />
+        </anchored>
+        <frame name="groupbox" offset="7,7,45,7" />
+        <class>select_item</class>
+        <skipempty />
+        <invisible />
+      </windowlist>
+      <mybutton name="transfer">
+        <anchored to="select_label" width="70" >
+          <top anchor="top" relation="relative" offset="-5" />
+          <left anchor="right" offset="50"/>
+          <bottom offset="5" />
+        </anchored>
+        <text>Transfer</text>
+				<script file="scripts/transfer_money.lua" />
+      </mybutton>
+    </sheetdata>
+  </windowclass>
+
+  <windowclass name="charsheet_inventory_money">
+		<margins control="0,0,0,0" />
+    <sheetdata>
+      <label_charframetop name="top">
+        <anchored height="20">
+          <top offset="5"/>
+          <left offset="0" />
+          <right offset="0" />
+        </anchored>
+        <invisible />
+      </label_charframetop>
+      <buttoncontrol name="expand">
+        <anchored to="top" width="20" height="20" >
+          <top anchor="top" relation="relative" offset="5" />
+          <left anchor="left" offset="0"/>
+        </anchored>
+        <icon normal="expand" down="expand_down" />
+        <script>
+          function onButtonPress()
+            local vis = window.money_extras.isVisible()
+            window.money_extras.setVisible(not vis)
+          end
+        </script>
+      </buttoncontrol>
+      <basicnumber name="money_amount">
+        <anchored to="expand" width="50">
+          <top ancor="top" relation="relative"/>
+          <left anchor="right" offset="10" />
+        </anchored>
+      </basicnumber>
+      <stringu name="money_type" source="coins.manage.money_type">
+        <anchored to="money_amount" position="righthigh" offset="10,0" width="20" height="20" />
+      </stringu>
+      <basicnumber name="money_times">
+        <anchored to="money_type" width="10">
+          <top ancor="top" relation="relative"/>
+          <left anchor="right" offset="10" />
+        </anchored>
+      </basicnumber>
+      <label name="money_times_label">
+        <anchored to="money_times" >
+          <top anchor="top" relation="relative" />
+          <left anchor="right" offset="5" />
+        </anchored>
+        <static>X</static>
+      </label>
+      <label name="money_reason_label">
+        <anchored to="money_times_label" >
+          <top anchor="top" relation="relative" />
+          <left anchor="right" offset="5" />
+        </anchored>
+        <static>Reason</static>
+      </label>
+      <stringu name="money_reason" source="coins.manage.money_reason">
+        <anchored to="money_reason_label" position="righthigh" offset="10,0" width="130" height="20" />
+      </stringu>
+      <mybutton name="add">
+        <anchored to="money_reason" width="30" >
+          <top anchor="top" relation="relative" offset="0" />
+          <left anchor="right" offset="0"/>
+          <bottom />
+        </anchored>
+        <script file="scripts/money_submit.lua" />
+        <text>Add</text>
+      </mybutton>
+      <mybutton name="sub">
+        <anchored to="add" width="30" >
+          <top anchor="top" relation="relative" offset="0" />
+          <left anchor="right" offset="0"/>
+          <bottom />
+        </anchored>
+        <script file="scripts/money_submit.lua" />
+        <text>Sub</text>
+      </mybutton>
+      <subwindow name="money_extras">
+        <anchored to="sub">
+          <top anchor="bottom" offset="10" relative="relative" />
+          <left parent=""  />
+          <right  parent=""  />
+        </anchored>
+        <fastinit />
+        <class>charsheet_money_convert</class>
+      </subwindow>
+    </sheetdata>
+  </windowclass>
+  
+  <windowclass name="charsheet_inventory_contents" modes="host,client" merge="join">
+    <sheetdata>
+      <subwindow name="money" insertbefore="coinother">
+        <anchored to="coinname6">
+          <top anchor="bottom" offset="10" relative="relative" />
+          <left parent=""  />
+          <right  parent=""  />
+        </anchored>
+        <class>charsheet_inventory_money</class>
+        <activate />
+        <script>
+          function onInstanceCreated()
+            window.coinother.setAnchor("top", "money", "bottom", "relative", 10)
+            window.encumbrancetitle.setAnchor("top", "coinother", "bottom", "relative", 10)
+          end
+        </script>
+      </subwindow>
+    </sheetdata>
+  </windowclass>
+
+  <windowclass name="configure_money_convert">
+    <frame>campaignlistwithtabs</frame>
+    <placement>
+      <size width="300" height="200" />
+    </placement>
+    <sizelimits>
+      <minimum width="300" height="200" />
+      <dynamic />
+    </sizelimits>
+    <sheetdata> 
+      <resize_campaignlistwithtabs />
+      <close_campaignlist />
+      <windowlist name="money_convert">
+        <anchored position="insidetopleft" offset="15,70">
+          <right parent="" offset="-20" />
+        </anchored>
+        <frame name="groupbox" offset="7,7,7,7" />
+        <class>money_convert_item</class>
+        <datasource>money_convert</datasource>
+        <sortby><field>value</field></sortby>
+				<allowdelete />
+				<script>
+					function onInit()
+						registerMenuItem(Interface.getString("list_menu_createitem"), "insert", 5);
+					end
+					function onMenuSelection(selection)
+						if selection == 5 then
+              addEntry();
+						end
+					end
+					function addEntry()
+						local w = createWindow();
+						if w then
+							w.name.setFocus();
+						end
+					end
+					function update()
+						local bEditMode = (window.money_convert_iedit.getValue() == 1);
+						for _,w in ipairs(getWindows()) do
+							w.idelete.setVisibility(bEditMode);
+						end
+					end
+				</script>
+      </windowlist>
+			<buttoncontrol name="money_convert_iedit">
+        <anchored to="money_convert" width="20" height="20">
+ 					<top anchor="bottom" offset="10"/>
+					<right offset="-5" />
+				</anchored>
+				<state icon="button_edit" tooltipres="button_editon" />
+				<state icon="button_edit_down" tooltipres="button_editoff" />
+        <tooltip textres="char_inventory_tooltip_edit" />
+        <script>
+          function onValueChanged()
+            local bEditMode = (getValue() == 1);
+
+            window.money_convert_iadd.setVisible(bEditMode);
+            window.money_convert.update();
+          end
+        </script>
+      </buttoncontrol>
+      <button_iadd name="money_convert_iadd">
+        <anchored to="money_convert" >
+ 					<top anchor="top" offset="-30"/>
+					<right offset="-5" />
+				</anchored>
+        <target>money_convert</target>
+      </button_iadd>
+    </sheetdata>
+  </windowclass>
+
+  <windowclass name="money_convert_item">
+    <sheetdata>
+      <stringu name="name">
+        <anchored position="insidetopleft" offset="0,0" width="30" height="20">
+        </anchored>
+      </stringu>
+      <basicnumber name="value">
+        <anchored position="insidetopright" width="30">
+          <right offset="-40" />
+        </anchored>
+      </basicnumber>
+      <genericcontrol name="rightanchor">
+        <anchored width="0" height="0">
+          <top />
+          <right />
+        </anchored>
+        <invisible />
+      </genericcontrol>
+      <button_idelete name="idelete">
+        <anchored width="20" height="20">
+          <top offset="2" />
+          <right parent="rightanchor" anchor="left" relation="relative" offset="-5" />
+        </anchored>
+      </button_idelete>
+    </sheetdata>
+  </windowclass>
+  
+  <windowclass name="select_item">
+    <sheetdata>
+      <stringu name="name">
+        <anchored position="insidetopleft" offset="0,0">
+        </anchored>
+        <readonly />
+        <script>
+          function onClickDown()
+            window.windowlist.window.select_label.setValue(getValue())
+            window.windowlist.window.select_node.setValue(window.link.getValue())
+            window.windowlist.window.select_label.setVisible(true)
+            window.windowlist.window.select_user.setVisible(false)
+            window.windowlist.window.transfer.setVisible(true)
+          end
+        </script>
+      </stringu>
+      <stringu name="link">
+        <anchored position="insidetopleft" offset="0,0">
+        </anchored>
+        <readonly />
+        <invisible />
+      </stringu>
+    </sheetdata>
+	</windowclass>
+</root>

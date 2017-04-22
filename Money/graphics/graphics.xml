@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>                                          
+
+<root>  
+  <icon name="convert" file="graphics/icons/convert.png" />     
+  <icon name="convert_to_gp" file="graphics/icons/convert_to_gp.png" />     
+  <string name="char_label_manage_money">MONEY MANAGMENT</string>
+  <framedef name="buttonup2">
+    <bitmap file="graphics/frames/buttonup2.png" />
+    <offset>12,12,12,12</offset>
+  </framedef>
+</root>
+

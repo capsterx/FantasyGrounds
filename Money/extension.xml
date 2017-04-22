@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Combat Timer extension module -->
+<root release="3.0" version="6">
+    <properties>
+        <name>Money Managment</name>
+        <version>0.0.1</version>
+        <author>Jonathan Brannan</author>
+        <description>
+          Adds helpers to add/substract money
+        </description>
+    </properties>
+    <base>
+      <script name="Money" file="scripts/money.lua" />
+      <includefile source="graphics/graphics.xml" />
+      <includefile source="xml/Money.xml" />
+    </base>
+</root>

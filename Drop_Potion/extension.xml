@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root release="3.0" version="6">
+    <properties>
+        <name>Drop Potion</name>
+        <version>0.0.1</version>
+        <author>Jonathan Brannan</author>
+        <description>
+          Drop Potion from inventory to combat tracker
+        </description>
+    </properties>
+    <base>
+      <script name="DropPotion" file="scripts/drop_potion.lua" />
+    </base>
+</root>
