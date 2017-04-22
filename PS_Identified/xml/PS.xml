@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+  <windowclass name="ps_parcelitem" merge="join">
+    <sheetdata>
+      <hn name="isidentified">
+        <script>
+          function onInit()
+            onValueChanged()
+          end
+
+          function onValueChanged()
+            if User.isHost() then
+              local bID = LibraryData.getIDState("item", getDatabaseNode().getParent(), true);
+              if not bID then
+                window.name.setColor("b20000")
+              else
+                window.name.setColor(nil)
+              end
+            end
+          end
+        </script>
+      </hn>
+		</sheetdata>
+	</windowclass>
+</root>

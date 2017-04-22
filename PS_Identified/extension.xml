@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root release="3.0" version="6">
+    <properties>
+        <name>Party Sheet identified</name>
+        <version>0.0.1</version>
+        <author>Jonathan Brannan</author>
+        <description>
+          Help GM know which items are unidentified
+        </description>
+    </properties>
+    <base>
+      <includefile source="xml/PS.xml" />
+    </base>
+</root>
