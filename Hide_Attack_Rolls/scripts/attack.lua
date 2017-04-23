@@ -4,7 +4,9 @@ function messageResult(bSecret, rSource, rTarget, rMessageGM, rMessagePlayer)
   if aWords[1] == 'Attack' then
     local bHas = rMessageGM.text:find("CRITICAL") or rMessageGM.text:find("AUTOMATIC")
     if not bHas then
-      OptionsManager.setOption("SHRR", 'off')
+      if not rSource or ActorManager.getFaction(rSource) == "friend" then
+        OptionsManager.setOption("SHRR", 'off')
+      end
     end
   end
   origMessageResult(bSecret, rSource, rTarget, rMessageGM, rMessagePlayer) 
