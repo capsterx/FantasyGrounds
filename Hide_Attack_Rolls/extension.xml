@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root release="3.0" version="6">
+    <properties>
+        <name>Hide Attack Rolls</name>
+        <version>0.0.1</version>
+        <author>Jonathan Brannan</author>
+        <description>
+          Hide just attack rolls.  Show automatic miss and critical hit
+        </description>
+    </properties>
+    <base>
+      <script name="HideAttack" file="scripts/attack.lua" />
+    </base>
+</root>
