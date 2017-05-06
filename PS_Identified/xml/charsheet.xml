@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+  <windowclass name="char_invitem" merge="join">
+    <sheetdata>
+      <hn name="isidentified">
+        <script>
+          function onInit()
+            if User.isHost() then
+              window.nonid_name.setColor("b20000")
+            end
+          end
+
+          function onValueChanged()
+            window.onIDChanged();   
+          end
+        </script>
+      </hn>
+		</sheetdata>
+	</windowclass>
+</root>

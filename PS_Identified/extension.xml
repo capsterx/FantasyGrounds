@@ -10,5 +10,6 @@
     </properties>
     <base>
       <includefile source="xml/PS.xml" />
+      <includefile source="xml/charsheet.xml" />
     </base>
 </root>
