@@ -17,6 +17,7 @@
                 window.name.setColor(nil)
               end
             end
+            window.onIDChanged();
           end
         </script>
       </hn>

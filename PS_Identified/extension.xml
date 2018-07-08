@@ -2,7 +2,7 @@
 <root release="3.0" version="6">
     <properties>
         <name>Party Sheet identified</name>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <author>Jonathan Brannan</author>
         <description>
           Help GM know which items are unidentified
